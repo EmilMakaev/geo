@@ -5,8 +5,8 @@ defmodule Common do
   """
   def calculate_by_latitude_longitude_range(range, radius) do
     Geocalc.bounding_box(range, radius)
-    |> Enum.with_index()
-    |> Enum.map(fn {[head, tail], index} ->
+    |> Stream.with_index()
+    |> Stream.map(fn {[head, tail], index} ->
       if index == 0 do
         %{"min_latitude" => head, "min_longitude" => tail}
       else
@@ -40,7 +40,7 @@ defmodule Common do
   Gets Мap of professions grouped by "category_name".
   """
   def count_offers_by_profession(professions) do
-    Enum.map(professions, fn {key, values} ->
+    Stream.map(professions, fn {key, values} ->
       amount_of_offers = Enum.reduce(values, 0, &(&1["amount_of_offers"] + &2))
 
       %{"category_name" => key, "amount_of_offers" => amount_of_offers}

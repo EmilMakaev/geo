@@ -13,7 +13,7 @@ defmodule Professions.Professions do
   """
   def modify_professions(offers) do
     Professions.ProfessionsAgent.value()
-    |> Enum.map(fn professon ->
+    |> Stream.map(fn professon ->
       if offers[professon["id"]] do
         amount_of_offers = length(offers[professon["id"]])
         Map.put(professon, "amount_of_offers", amount_of_offers)
