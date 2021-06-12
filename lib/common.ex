@@ -80,4 +80,11 @@ defmodule Common do
     GenServerData.get_data()
     |> Offers.Offers.modify_offers()
   end
+
+  @doc """
+  Returning a list of job offers corresponding to latitude, longitude and range
+  """
+  def show_list_by_latitude_longitude_range do
+    GenServerData.get_data()
+  end
 end
